@@ -1,0 +1,12 @@
+[workspace]
+members = ["crm"]
+resolver = "2"
+
+[workspace.dependencies]
+anyhow = "1.0.100"
+prost = "0.14.3"
+prost-build = "0.14.3"
+prost-types = "0.14.3"
+tonic = { version = "0.14.2", features = ["zstd"] }
+tonic-prost = "0.14.2"
+tonic-prost-build = "0.14.2"

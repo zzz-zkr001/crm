@@ -1,0 +1,15 @@
+
+syntax = "proto3";
+
+package user_stats;
+import "messages.proto";
+
+service UserStats {
+    rpc Query(user_stats.QueryRequest) returns (stream user_stats.UserStatsQueryResponse) {
+
+    }
+    rpc RawQuery(user_stats.RawQueryRequest) returns (stream user_stats.UserStatsQueryResponse) {
+
+    }
+
+}
