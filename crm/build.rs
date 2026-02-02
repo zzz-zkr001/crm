@@ -5,6 +5,6 @@ fn main() -> anyhow::Result<()> {
     let builder = tonic_prost_build::configure();
     builder
         .out_dir("src/pb")
-        .compile_protos(&["../protos/crm/crm.proto"], &["../protos"])?;
+        .compile_protos(&["../protos/crm/crm.proto"], &["../protos/crm"])?;
     Ok(())
 }

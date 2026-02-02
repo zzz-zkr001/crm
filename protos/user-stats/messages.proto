@@ -4,27 +4,31 @@ package user_stats;
 
 import "google/protobuf/timestamp.proto";
 
-message UserStatsQueryResponse {
-  string email = 1;
-  string name = 2;
+message User {
+    string email = 1;
+    string name = 2;
 }
 
 message QueryRequest {
-  map<string, TimeQuery> timestamps = 1;
-  map<string, IdQuery> ids = 2;
+    map<string, TimeQuery> timestamps = 1;
+    map<string, IdQuery> ids = 2;
 }
 
 message QueryResponse {
-    repeated UserStatsQueryResponse users = 1;
+    repeated User users = 1;
 }
 
 message RawQueryRequest {
     string query = 1;
 }
 
+message RawQueryResponse {
+    repeated User users = 1;
+}
+
 message TimeQuery {
-  google.protobuf.Timestamp before = 1;
-  google.protobuf.Timestamp after = 2;
+    google.protobuf.Timestamp before = 1;
+    google.protobuf.Timestamp after = 2;
 }
 
 message IdQuery {

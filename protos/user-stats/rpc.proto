@@ -4,12 +4,9 @@ syntax = "proto3";
 package user_stats;
 import "messages.proto";
 
-service UserStats {
-    rpc Query(user_stats.QueryRequest) returns (stream user_stats.UserStatsQueryResponse) {
-
+service UserStatsService {
+    rpc Query(QueryRequest) returns(stream QueryResponse) {
     }
-    rpc RawQuery(user_stats.RawQueryRequest) returns (stream user_stats.UserStatsQueryResponse) {
-
+    rpc RawQuery(RawQueryRequest) returns(stream RawQueryResponse) {
     }
-
 }
