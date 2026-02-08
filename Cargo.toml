@@ -5,11 +5,14 @@ resolver = "2"
 [workspace.dependencies]
 anyhow = "1.0.100"
 derive_builder = "0.20.2"
+futures = "0.3.31"
 prost = "0.14.3"
 prost-build = "0.14.3"
 prost-serde = "0.3.0"
 prost-types = "0.14.3"
 serde = { version = "1.0.228", features = ["derive"] }
+serde_yaml = "0.9.34"
+sqlx = { version = "0.8.6", features = ["macros", "postgres", "sqlx-macros"] }
 tokio = { version = "1.49.0", features = ["macros", "rt", "rt-multi-thread"] }
 tonic = { version = "0.14.2", features = ["zstd"] }
 tonic-prost = "0.14.2"

@@ -20,20 +20,10 @@ pub struct QueryRequest {
     #[prost(map = "string, message", tag = "2")]
     pub ids: ::std::collections::HashMap<::prost::alloc::string::String, IdQuery>,
 }
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub users: ::prost::alloc::vec::Vec<User>,
-}
 #[derive(Clone, PartialEq, Eq, Hash, ::prost::Message)]
 pub struct RawQueryRequest {
     #[prost(string, tag = "1")]
     pub query: ::prost::alloc::string::String,
-}
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RawQueryResponse {
-    #[prost(message, repeated, tag = "1")]
-    pub users: ::prost::alloc::vec::Vec<User>,
 }
 #[derive(derive_builder::Builder)]
 #[builder(setter(into, strip_option), default)]
@@ -148,7 +138,7 @@ pub mod user_stats_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::QueryResponse>>,
+            tonic::Response<tonic::codec::Streaming<super::User>>,
             tonic::Status,
         > {
             self.inner
@@ -172,7 +162,7 @@ pub mod user_stats_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RawQueryRequest>,
         ) -> std::result::Result<
-            tonic::Response<tonic::codec::Streaming<super::RawQueryResponse>>,
+            tonic::Response<tonic::codec::Streaming<super::User>>,
             tonic::Status,
         > {
             self.inner
@@ -209,7 +199,7 @@ pub mod user_stats_service_server {
     pub trait UserStatsService: std::marker::Send + std::marker::Sync + 'static {
         /// Server streaming response type for the Query method.
         type QueryStream: tonic::codegen::tokio_stream::Stream<
-                Item = std::result::Result<super::QueryResponse, tonic::Status>,
+                Item = std::result::Result<super::User, tonic::Status>,
             >
             + std::marker::Send
             + 'static;
@@ -219,7 +209,7 @@ pub mod user_stats_service_server {
         ) -> std::result::Result<tonic::Response<Self::QueryStream>, tonic::Status>;
         /// Server streaming response type for the RawQuery method.
         type RawQueryStream: tonic::codegen::tokio_stream::Stream<
-                Item = std::result::Result<super::RawQueryResponse, tonic::Status>,
+                Item = std::result::Result<super::User, tonic::Status>,
             >
             + std::marker::Send
             + 'static;
@@ -311,7 +301,7 @@ pub mod user_stats_service_server {
                         T: UserStatsService,
                     > tonic::server::ServerStreamingService<super::QueryRequest>
                     for QuerySvc<T> {
-                        type Response = super::QueryResponse;
+                        type Response = super::User;
                         type ResponseStream = T::QueryStream;
                         type Future = BoxFuture<
                             tonic::Response<Self::ResponseStream>,
@@ -357,7 +347,7 @@ pub mod user_stats_service_server {
                         T: UserStatsService,
                     > tonic::server::ServerStreamingService<super::RawQueryRequest>
                     for RawQuerySvc<T> {
-                        type Response = super::RawQueryResponse;
+                        type Response = super::User;
                         type ResponseStream = T::RawQueryStream;
                         type Future = BoxFuture<
                             tonic::Response<Self::ResponseStream>,
